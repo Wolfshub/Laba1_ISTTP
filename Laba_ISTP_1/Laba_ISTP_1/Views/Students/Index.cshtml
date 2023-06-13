@@ -1,0 +1,57 @@
+﻿@using static Laba_ISTP_1.Helpers.Roles;
+@model IEnumerable<Laba_ISTP_1.Models.Students>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Speciality.Details)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Speciality.Details)
+                </td>
+                <td>
+                    @if (User.IsInRole(Role.Dean))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details | </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (User.IsInRole(Role.Dean) || User.IsInRole(Role.Teacher))
+{
+    <div>
+        <h3>Завантаження інформації в файл</h3>
+        <a asp-action="Export"> Завантажити </a>
+    </div>
+}

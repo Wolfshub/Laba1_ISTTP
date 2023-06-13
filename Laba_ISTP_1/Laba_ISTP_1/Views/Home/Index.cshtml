@@ -1,0 +1,95 @@
+﻿@using static Laba_ISTP_1.Helpers.Roles;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px;
+        }
+
+            .button a {
+                display: inline-block;
+                padding: 15px 30px;
+                background-color: #337ab7;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 20px;
+                transition: background-color 0.3s;
+            }
+
+                .button a:hover {
+                    background-color: #286090;
+                }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            display: block;
+        }
+
+        p {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ласкаво просимо до нашого університету</h1>
+        <p>Виберіть з чого хочете почати:</p>
+        <div class="button">
+            <a class="button" asp-controller="Departments" asp-action="Index">Факультети</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Groups" asp-action="Index">Групи</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Lessons" asp-action="Index">Пари</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Specialities" asp-action="Index">Спеціальності</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Students" asp-action="Index">Студенти</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Teachers" asp-action="Index">Викладачі</a>
+        </div>
+        <div class="button">
+            <a class="button" asp-controller="Timetables" asp-action="Index">Розклади</a>
+        </div>
+        @if (User.IsInRole(Role.User))
+        {
+            <div class="button">
+                <a class="button" asp-controller="Students" asp-action="BecomeStudent">Стати студентом</a>
+            </div>
+        }
+    </div>
+</body>
+</html>
